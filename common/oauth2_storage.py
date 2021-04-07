@@ -28,15 +28,18 @@ class OAuth2SQLStorage:
                 client_type=AbstractApplication.CLIENT_CONFIDENTIAL,
                 authorization_grant_type=AbstractApplication.GRANT_PASSWORD,
                 client_secret=settings.DEFAULT_OAUTH_CLIENT_SECRET,
-                name=application_name
+                name=application_name,
             )
             is_created = True
 
-        return self._convert_application_to_its_dto(application=application), \
-               is_created
+        return (
+            self._convert_application_to_its_dto(application=application),
+            is_created,
+        )
 
-    def create_access_token(self, user_id, application_id, scopes,
-                            expiry_in_seconds):
+    def create_access_token(
+        self, user_id, application_id, scopes, expiry_in_seconds
+    ):
         import datetime
         from oauth2_provider.models import AccessToken
 
@@ -49,15 +52,16 @@ class OAuth2SQLStorage:
             token=access_token,
             application_id=application_id,
             expires=expires,
-            scope=scopes
+            scope=scopes,
         )
         access_token_object.save()
 
         from common.dtos import AccessTokenDTO
+
         return AccessTokenDTO(
             access_token_id=access_token_object.id,
             token=access_token_object.token,
-            expires=expires
+            expires=expires,
         )
 
     def create_refresh_token(self, user_id, application_id, access_token_id):
@@ -65,18 +69,20 @@ class OAuth2SQLStorage:
 
         refresh_token = self._generate_access_token()
         refresh_token_object = RefreshToken(
-            user_id=user_id, token=refresh_token,
+            user_id=user_id,
+            token=refresh_token,
             application_id=application_id,
-            access_token_id=access_token_id
+            access_token_id=access_token_id,
         )
         refresh_token_object.save()
 
         from common.dtos import RefreshTokenDTO
+
         return RefreshTokenDTO(
             token=refresh_token_object.token,
             access_token=refresh_token_object.access_token,
             user_id=refresh_token_object.user_id,
-            revoked=refresh_token_object.revoked
+            revoked=refresh_token_object.revoked,
         )
 
     @staticmethod
@@ -87,7 +93,7 @@ class OAuth2SQLStorage:
 
         size = 30
         chars = string.ascii_uppercase + string.digits + string.ascii_lowercase
-        return ''.join(random.choice(chars) for _ in range(size))
+        return "".join(random.choice(chars) for _ in range(size))
 
     @staticmethod
     def _convert_application_to_its_dto(application):

@@ -3,14 +3,14 @@ import abc
 
 
 class UserStorageInterface(abc.ABC):
-
     @abc.abstractmethod
     def validate_username(self, username: str) -> bool:
         pass
 
     @abc.abstractmethod
     def get_user_id_for_valid_username_password(
-            self, username: str, password: str) -> Optional[int]:
+        self, username: str, password: str
+    ) -> Optional[int]:
         pass
 
     @abc.abstractmethod

@@ -1,8 +1,12 @@
 from django.views.decorators.csrf import csrf_exempt
 
 from fertilizers.interactors.logout_interactor import LogoutInteractor
-from fertilizers.presenters.logout_presenter_implementation import LogoutPresenterImplementation
-from fertilizers.storages.user_storage_implementation import UserStorageImplementation
+from fertilizers.presenters.logout_presenter_implementation import (
+    LogoutPresenterImplementation,
+)
+from fertilizers.storages.user_storage_implementation import (
+    UserStorageImplementation,
+)
 
 
 @csrf_exempt

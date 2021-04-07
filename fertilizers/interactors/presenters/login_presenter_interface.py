@@ -3,7 +3,6 @@ from common.dtos import UserAuthTokensDTO
 
 
 class LoginPresenterInterface(abc.ABC):
-
     @abc.abstractmethod
     def raise_invalid_username_exception(self):
         pass
