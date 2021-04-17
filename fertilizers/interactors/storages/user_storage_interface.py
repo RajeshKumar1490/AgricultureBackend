@@ -1,6 +1,8 @@
 from typing import Optional
 import abc
 
+from fertilizers.interactors.dtos import UserDetailsDTO
+
 
 class UserStorageInterface(abc.ABC):
     @abc.abstractmethod
@@ -19,4 +21,8 @@ class UserStorageInterface(abc.ABC):
 
     @abc.abstractmethod
     def delete_access_token(self, access_token: str):
+        pass
+
+    @abc.abstractmethod
+    def create_user_details(self, user_details_dto: UserDetailsDTO):
         pass

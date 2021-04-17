@@ -1,5 +1,6 @@
 from typing import Optional
 
+from fertilizers.interactors.dtos import UserDetailsDTO
 from fertilizers.interactors.storages.user_storage_interface import (
     UserStorageInterface,
 )
@@ -35,3 +36,12 @@ class UserStorageImplementation(UserStorageInterface):
 
         AccessToken.objects.get(token=access_token).delete()
         return
+
+    def create_user_details(self, user_details_dto: UserDetailsDTO):
+        user = User.objects.create(
+            first_name=user_details_dto.first_name,
+            last_name=user_details_dto.last_name,
+            email=user_details_dto.email,
+            username=user_details_dto.username,
+        )
+        user.set_password(raw_password=user_details_dto.password)
