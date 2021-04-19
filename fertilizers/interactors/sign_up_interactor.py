@@ -27,11 +27,25 @@ class SignUpInteractor:
         if is_not_strong_password:
             return self.presenter.not_strong_password_exception()
 
+        is_passwords_not_equal = (
+            user_details_dto.password != user_details_dto.verify_password
+        )
+        if is_passwords_not_equal:
+            return self.presenter.passwords_not_equal_exception()
+
         is_username_exists = self.user_storage.validate_username(
             username=user_details_dto.username
         )
         if is_username_exists:
             return self.presenter.username_already_exists_exception()
+
+        is_email_exists = self.user_storage.check_is_email_exists(
+            email=user_details_dto.email
+        )
+        if is_email_exists:
+            return self.presenter.email_already_exists_exception(
+                email=user_details_dto.email
+            )
 
         self.user_storage.create_user_details(user_details_dto=user_details_dto)
 

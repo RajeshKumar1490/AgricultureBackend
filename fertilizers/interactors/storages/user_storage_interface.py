@@ -10,6 +10,10 @@ class UserStorageInterface(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def check_is_email_exists(self, email: str) -> bool:
+        pass
+
+    @abc.abstractmethod
     def get_user_id_for_valid_username_password(
         self, username: str, password: str
     ) -> Optional[int]:

@@ -22,3 +22,13 @@ USERNAME_ALREADY_EXISTS = (
     "username already taken! please enter unique username",
     "USERNAME_ALREADY_EXISTS",
 )
+
+PASSWORDS_NOT_EQUAL = (
+    "Please enter same passwords for password and verify password",
+    "PASSWORDS_NOT_EQUAL",
+)
+
+EMAIL_ALREADY_EXISTS = (
+    "email: {} has already taken! please enter another email",
+    "EMAIL_ALREADY_EXISTS",
+)

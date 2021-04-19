@@ -12,6 +12,10 @@ class UserStorageImplementation(UserStorageInterface):
         is_valid_username = User.objects.filter(username=username).exists()
         return is_valid_username
 
+    def check_is_email_exists(self, email: str) -> bool:
+        is_email_exists = User.objects.filter(email=email).exists()
+        return is_email_exists
+
     def get_user_id_for_valid_username_password(
         self, username: str, password: str
     ) -> Optional[int]:

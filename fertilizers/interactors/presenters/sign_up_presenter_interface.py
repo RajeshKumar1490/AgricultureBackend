@@ -7,7 +7,15 @@ class SignUpPresenterInterface(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def passwords_not_equal_exception(self):
+        pass
+
+    @abc.abstractmethod
     def username_already_exists_exception(self):
+        pass
+
+    @abc.abstractmethod
+    def email_already_exists_exception(self, email: str):
         pass
 
     @abc.abstractmethod

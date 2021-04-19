@@ -8,3 +8,4 @@ class UserDetailsDTO:
     last_name: str
     email: str
     password: str
+    verify_password: str
