@@ -14,7 +14,10 @@ from fertilizers.storages.user_storage_implementation import (
 
 @csrf_exempt
 def login(request):
+
+    print(request)
     request_data = json.loads(request.body)
+    print(request_data)
     username = request_data.get("username", " ")
     password = request_data.get("password", " ")
 
