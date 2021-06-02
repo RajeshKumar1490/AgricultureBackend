@@ -19,12 +19,7 @@ class SignUpInteractor:
     def sign_up(self, user_details_dto: UserDetailsDTO):
         import re
 
-        strong_password_pattern = (
-            "^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$"
-        )
-        result = re.findall(strong_password_pattern, user_details_dto.password)
-        is_not_strong_password = not result
-        if is_not_strong_password:
+        if not re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{8,}', user_details_dto.password):
             return self.presenter.not_strong_password_exception()
 
         is_passwords_not_equal = (

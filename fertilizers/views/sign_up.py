@@ -18,7 +18,7 @@ def sign_up(request):
     last_name = request_data.get("last_name", "")
     email = request_data.get("email", "")
     password = request_data.get("password", "")
-    verify_password = request_data.get("verify_password", "")
+    verify_password = request_data.get("confirmPassword", "")
     username = request_data.get("username", "")
 
     user_storage = UserStorageImplementation()

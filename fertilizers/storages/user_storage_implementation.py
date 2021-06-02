@@ -49,3 +49,4 @@ class UserStorageImplementation(UserStorageInterface):
             username=user_details_dto.username,
         )
         user.set_password(raw_password=user_details_dto.password)
+        user.save()
