@@ -15,16 +15,16 @@ from fertilizers.constants.exception_messages import (
 class LoginPresenterImplementation(LoginPresenterInterface):
     def raise_invalid_username_exception(self):
         response_dict = {
-            "response_content": INVALID_USERNAME_EXCEPTION[0],
-            "response": INVALID_USERNAME_EXCEPTION[1],
+            "response_content": INVALID_USERNAME_EXCEPTION[1],
+            "response": INVALID_USERNAME_EXCEPTION[0],
         }
         response_data = json.dumps(response_dict)
         return HttpResponse(response_data, status=403)
 
     def raise_invalid_password_exception(self):
         response_dict = {
-            "response_content": INVALID_PASSWORD_EXCEPTION[0],
-            "response": INVALID_PASSWORD_EXCEPTION[1],
+            "response_content": INVALID_PASSWORD_EXCEPTION[1],
+            "response": INVALID_PASSWORD_EXCEPTION[0],
         }
         response_data = json.dumps(response_dict)
         return HttpResponse(response_data, status=403)

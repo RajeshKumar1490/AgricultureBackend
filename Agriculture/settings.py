@@ -25,7 +25,9 @@ SECRET_KEY = "chg_l$#+e^%&&uu)dr@8b-_d&uc^v)nwv5vj9@8l(jbdlu-7!("
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*"
+]
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "oauth2_provider",
     "fertilizers",
+    "corsheaders",
 ]
 
 THIRD_PARTY_APPS_BASE = [
@@ -58,7 +61,10 @@ THIRD_PARTY_APPS_BASE = [
     "django_fine_uploader_s3",
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

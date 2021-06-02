@@ -1,7 +1,6 @@
 import json
 
 from django.views.decorators.csrf import csrf_exempt
-
 from common.oauth2_storage import OAuth2SQLStorage
 from fertilizers.interactors.login_interactor import LoginInteractor
 from fertilizers.presenters.login_presenter_implementation import (
@@ -14,10 +13,7 @@ from fertilizers.storages.user_storage_implementation import (
 
 @csrf_exempt
 def login(request):
-
-    print(request)
     request_data = json.loads(request.body)
-    print(request_data)
     username = request_data.get("username", " ")
     password = request_data.get("password", " ")
 
