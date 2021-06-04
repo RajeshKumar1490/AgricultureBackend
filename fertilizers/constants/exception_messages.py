@@ -29,6 +29,6 @@ PASSWORDS_NOT_EQUAL = (
 )
 
 EMAIL_ALREADY_EXISTS = (
-    "email: {} has already taken! please enter another email",
+    "email has already taken! please enter another email",
     "EMAIL_ALREADY_EXISTS",
 )
