@@ -9,3 +9,9 @@ class UserDetailsDTO:
     email: str
     password: str
     verify_password: str
+
+
+@dataclass
+class BasicUserDetailsDTO:
+    username: str
+    profile_pic_url: str

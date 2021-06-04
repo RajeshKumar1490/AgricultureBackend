@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fertilizers.interactors.dtos import UserDetailsDTO
+from fertilizers.interactors.dtos import UserDetailsDTO, BasicUserDetailsDTO
 from fertilizers.interactors.storages.user_storage_interface import (
     UserStorageInterface,
 )
@@ -8,6 +8,18 @@ from fertilizers.models import User
 
 
 class UserStorageImplementation(UserStorageInterface):
+    def get_user_id_for_access_token(self, access_token: str) -> str:
+        from oauth2_provider.models import AccessToken
+        user_id = str(AccessToken.objects.get(token=access_token).user_id)
+        return user_id
+
+    def get_basic_user_details(self, user_id: str) -> BasicUserDetailsDTO:
+        user_details = User.objects.filter(id=user_id).values('username', "profile_pic_url").first()
+        return BasicUserDetailsDTO(
+            username=user_details["username"],
+            profile_pic_url=user_details["profile_pic_url"]
+        )
+
     def validate_username(self, username: str) -> bool:
         is_valid_username = User.objects.filter(username=username).exists()
         return is_valid_username
@@ -18,12 +30,12 @@ class UserStorageImplementation(UserStorageInterface):
 
     def get_user_id_for_valid_username_password(
         self, username: str, password: str
-    ) -> Optional[int]:
+    ) -> Optional[str]:
         user = User.objects.get(username=username)
         from fertilizers.exceptions.exceptions import InvalidPasswordException
 
         if user.check_password(password):
-            return user.id
+            return str(user.id)
         else:
             raise InvalidPasswordException
 
