@@ -7,7 +7,7 @@ class UserAuthTokensDTO:
     user_id: str
     access_token: str
     refresh_token: str
-    expires_in: datetime.datetime
+    expires_in: str
 
 
 @dataclass
