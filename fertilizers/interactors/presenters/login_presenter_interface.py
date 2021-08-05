@@ -12,5 +12,5 @@ class LoginPresenterInterface(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get_access_token_response(self, access_token_dto: UserAuthTokensDTO):
+    def get_access_token_response(self, access_token_dto: UserAuthTokensDTO, user_profession: str):
         pass

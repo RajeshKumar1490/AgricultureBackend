@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import Optional, List
 import abc
 
-from fertilizers.interactors.dtos import UserDetailsDTO, BasicUserDetailsDTO
+from fertilizers.interactors.dtos import UserDetailsDTO, BasicUserDetailsDTO, FarmerRequestDTO
 
 
 class UserStorageInterface(abc.ABC):
@@ -39,3 +39,10 @@ class UserStorageInterface(abc.ABC):
     def get_basic_user_details(self, user_id: str) -> BasicUserDetailsDTO:
         pass
 
+    @abc.abstractmethod
+    def get_user_profession(self, user_id: str) -> str:
+        pass
+
+    @abc.abstractmethod
+    def get_farmer_requests(self, user_id: str) -> List[FarmerRequestDTO]:
+        pass

@@ -29,12 +29,13 @@ class LoginPresenterImplementation(LoginPresenterInterface):
         response_data = json.dumps(response_dict)
         return HttpResponse(response_data, status=403)
 
-    def get_access_token_response(self, access_token_dto: UserAuthTokensDTO):
+    def get_access_token_response(self, access_token_dto: UserAuthTokensDTO, user_profession: str):
         access_token_response = {
             "user_id": access_token_dto.user_id,
             "access_token": access_token_dto.access_token,
             "refresh_token": access_token_dto.refresh_token,
             "expires_in": str(access_token_dto.expires_in),
+            "profession": user_profession
         }
 
         response_data = json.dumps(access_token_response)

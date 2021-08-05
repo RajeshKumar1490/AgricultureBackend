@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import Optional, List
 
-from fertilizers.interactors.dtos import UserDetailsDTO, BasicUserDetailsDTO
+from fertilizers.interactors.dtos import UserDetailsDTO, BasicUserDetailsDTO, FarmerRequestDTO
 from fertilizers.interactors.storages.user_storage_interface import (
     UserStorageInterface,
 )
@@ -62,3 +62,22 @@ class UserStorageImplementation(UserStorageInterface):
         )
         user.set_password(raw_password=user_details_dto.password)
         user.save()
+
+    def get_user_profession(self, user_id: str) -> str:
+        user_obj = User.objects.get(id=user_id)
+        return user_obj.profession
+
+    def get_farmer_requests(self, user_id: str) -> List[FarmerRequestDTO]:
+        from fertilizers.models import FarmerRequest
+        request_objs = FarmerRequest.objects.filter(user_id=user_id)
+
+        farmer_request_dtos = [
+                FarmerRequestDTO(
+                    farmer_name=request_obj.user.username,
+                    pest_image_url=request_obj.pest_image_url,
+                    crop_in_acres=request_obj.crop_in_acres,
+                    plant_part=request_obj.plant_part
+                )
+            for request_obj in request_objs
+        ]
+        return farmer_request_dtos

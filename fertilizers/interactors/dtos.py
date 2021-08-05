@@ -15,3 +15,11 @@ class UserDetailsDTO:
 class BasicUserDetailsDTO:
     username: str
     profile_pic_url: str
+
+
+@dataclass
+class FarmerRequestDTO:
+    farmer_name: str
+    pest_image_url: str
+    plant_part: str
+    crop_in_acres: int

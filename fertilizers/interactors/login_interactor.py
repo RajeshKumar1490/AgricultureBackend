@@ -39,7 +39,9 @@ class LoginInteractor:
         service = OAuthUserAuthTokensService(oauth2_storage=self.oauth_storage)
         access_token_dto = service.create_user_auth_tokens(user_id=user_id)
 
+        user_profession = self.user_storage.get_user_profession(user_id=user_id)
+
         response = self.presenter.get_access_token_response(
-            access_token_dto=access_token_dto
+            access_token_dto=access_token_dto, user_profession="AGO"
         )
         return response
