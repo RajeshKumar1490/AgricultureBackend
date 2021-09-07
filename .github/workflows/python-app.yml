@@ -47,6 +47,6 @@ jobs:
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+           GITHUB_TOKEN: "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"
+           SONAR_TOKEN: "f2dbc5af6ff67517e61e151d24d6015ee7e60e1c"
+           SONAR_HOST_URL: "https://sonar.rajesh.com/"
